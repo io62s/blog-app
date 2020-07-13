@@ -16,7 +16,6 @@ function PostForm() {
   const postContext = useContext(PostContext);
   const {
     dispatch,
-    getPosts,
     addPost,
     editPost,
     postToEdit,
@@ -49,7 +48,6 @@ function PostForm() {
     }
     setNewPost(initialFormState);
     handleToggleModal();
-    getPosts();
     if (!isLoading) {
       setTimeout(() => {
         dispatch(clearAppMessage());

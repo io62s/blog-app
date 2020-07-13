@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import PostContext from "../context/postContext";
+import moment from "moment";
 import { PostContainer } from "../Styles/PostStyles";
 
 function Post({ post }) {
@@ -12,7 +13,10 @@ function Post({ post }) {
     toggleCreatePostFormModal,
     isLoading,
   } = postContext;
-  const { title, text } = post;
+  const { title, text, createdAt } = post;
+
+  const date = moment(createdAt).format(`DD.MM.YYYY`);
+  const time = moment(createdAt).format(`HH:mm`);
 
   const handleDeletePost = () => {
     deletePost(post);
@@ -27,7 +31,6 @@ function Post({ post }) {
     dispatch(setPostToEdit(post));
     dispatch(toggleCreatePostFormModal());
   };
-
   return (
     <PostContainer>
       <div className="post-header">
@@ -35,7 +38,7 @@ function Post({ post }) {
           <img src="https://picsum.photos/80" alt="avatar" />
           <div>
             <h3>{title}</h3>
-            <p>Created at</p>
+            <p>Posted date: {`${date} at ${time} by John Doe ${post.id}`}</p>
           </div>
         </div>
         <div className="buttons">

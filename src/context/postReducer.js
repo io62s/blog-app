@@ -23,7 +23,7 @@ const postReducer = (state, action) => {
         ...state,
         posts: [...state.posts, action.payload],
         isLoading: false,
-        msg: `${action.payload.title} Post Added`,
+        msg: `"${action.payload.title}" Post Added`,
       };
     case UPDATE_POST:
       return {
@@ -34,14 +34,14 @@ const postReducer = (state, action) => {
             : post
         ),
         isLoading: false,
-        msg: "Post Updated",
+        msg: `"${action.payload.title}" Post Updated`,
       };
     case DELETE_POST:
       return {
         ...state,
         posts: state.posts.filter((post) => post.id !== action.payload.id),
         isLoading: false,
-        msg: `${action.payload.title} Post Deleted`,
+        msg: `"${action.payload.title}" Post Deleted`,
       };
     case SET_FILTER:
       return {

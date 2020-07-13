@@ -65,17 +65,15 @@ function PostState(props) {
 
   const editPost = async (post) => {
     try {
-      const res = axios.put(
+      await axios.put(
         `https://frontend-api-test-nultien.azurewebsites.net/api/BlogPosts/${post.id}`,
         post,
         { headers: { "Content-Type": "application/json" } }
       );
 
-      const updatedPost = await res;
-
       dispatch({
         type: UPDATE_POST,
-        payload: updatedPost,
+        payload: post,
       });
     } catch (error) {
       console.log(error);

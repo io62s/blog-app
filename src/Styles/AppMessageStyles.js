@@ -6,6 +6,7 @@ const MsgContainer = styled.div`
   ${flex("column", "flex-start")};
   padding: 2rem 2rem 2rem 0;
   grid-area: message;
+  position: relative;
 
   .app-msg {
     width: 100%;
@@ -29,6 +30,9 @@ const MsgContainer = styled.div`
     border: none;
     border-radius: 5px;
     cursor: pointer;
+
+    position: absolute;
+    bottom: 0;
   }
 
   @media (max-width: 850px) {
