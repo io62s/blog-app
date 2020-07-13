@@ -37,6 +37,10 @@ const MsgContainer = styled.div`
 
   @media (max-width: 850px) {
     padding: 1rem;
+
+    button {
+      position: relative;
+    }
   }
 `;
 

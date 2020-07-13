@@ -7,7 +7,9 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  font-family: "Open Sans", sans-serif;
+  body {
+    font-family: "Open Sans", sans-serif;
+  }
 `;
 
 export default GlobalStyle;

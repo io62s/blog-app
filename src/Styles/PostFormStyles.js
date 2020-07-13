@@ -73,6 +73,20 @@ const FormWrapper = styled.div`
         }
       }
     }
+    @media (max-width: 450px) {
+      display: block;
+      margin: 0 1rem;
+      width: 250px;
+
+      .buttons {
+        width: 100%;
+        ${flex("column", "center", "center")}
+
+        button {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
   }
 `;
 
