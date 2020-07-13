@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import PostState from "../context/PostState";
 import Nav from "./Nav";
 import BlogPosts from "./BlogPosts";
 import Profile from "./Profile";
-import PostState from "../context/PostState";
 
 import { Container } from "../Styles/AppStyles";
 import GlobalStyle from "../Styles/GlobalStyle";

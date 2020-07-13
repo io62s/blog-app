@@ -2,7 +2,12 @@ import React, { useReducer } from "react";
 import postReducer from "./postReducer";
 import PostContext from "./postContext";
 
-import { getPosts } from "./postActions";
+import {
+  getPosts,
+  toggleCreatePostFormModal,
+  addPost,
+  deletePost,
+} from "./postActions";
 
 function PostState(props) {
   const initialState = {
@@ -20,6 +25,7 @@ function PostState(props) {
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Viverra mauris in aliquam sem. Sed cras ornare arcu dui vivamus arcu.",
       },
     ],
+    isCreatingPost: false,
   };
 
   const [state, dispatch] = useReducer(postReducer, initialState);
@@ -28,10 +34,13 @@ function PostState(props) {
     <PostContext.Provider
       value={{
         posts: state.posts,
+        isCreatingPost: state.isCreatingPost,
         getPosts,
+        addPost,
+        deletePost,
+        toggleCreatePostFormModal,
         dispatch,
-      }}
-    >
+      }}>
       {props.children}
     </PostContext.Provider>
   );

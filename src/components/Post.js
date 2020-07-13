@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import PostContext from "../context/postContext";
 import { PostContainer } from "../Styles/PostStyles";
 
 function Post({ post }) {
+  const postContext = useContext(PostContext);
+  const { dispatch, deletePost } = postContext;
   const { title, text } = post;
+
+  const handleDeletePost = () => {
+    dispatch(deletePost(post));
+  };
 
   return (
     <PostContainer>
@@ -16,7 +23,7 @@ function Post({ post }) {
         </div>
         <div className="buttons">
           <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={handleDeletePost}>Delete</button>
         </div>
       </div>
       <div className="post-body">

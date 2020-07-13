@@ -45,7 +45,7 @@ const MainSection = styled.div`
       }
     }
     .post-wrapper {
-      pading: 1rem;
+      padding: 1rem;
     }
   }
 `;
