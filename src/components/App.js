@@ -1,11 +1,17 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import Nav from "./Nav";
 import BlogPosts from "./BlogPosts";
 import Profile from "./Profile";
 
+import { Container } from "../Styles/AppStyles";
+import GlobalStyle from "../Styles/GlobalStyle";
+
 function App() {
   return (
-    <div className="App">
+    <Container>
+      <GlobalStyle />
+      <Nav />
       <Switch>
         <Route exact path="/">
           <BlogPosts />
@@ -14,7 +20,7 @@ function App() {
           <Profile />
         </Route>
       </Switch>
-    </div>
+    </Container>
   );
 }
 
