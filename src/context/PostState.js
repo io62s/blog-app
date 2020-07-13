@@ -50,13 +50,10 @@ function PostState(props) {
       );
       const createdPost = await res;
       const newPost = await createdPost.data;
-      const postToAdd = {
-        ...newPost,
-        categoryId: Math.ceil(Math.random() * Math.floor(3)),
-      };
+
       dispatch({
         type: ADD_POST,
-        payload: postToAdd,
+        payload: newPost,
       });
     } catch (error) {
       console.log(error);
