@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import PostContext from "../context/postContext";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { NavBar, NavWrapper, NavLinks } from "../Styles/NavStyles";
 
 function Nav() {
+  const postContext = useContext(PostContext);
+  const { dispatch, titleFilter, setTitleFilter } = postContext;
   const [toggleNavOpen, setToggleNavOpen] = useState(false);
 
   const handleToggleNavOpen = () => {
     setToggleNavOpen(!toggleNavOpen);
+  };
+
+  const handleSetTitleFilter = (e) => {
+    dispatch(setTitleFilter(e.target.value));
   };
 
   return (
@@ -19,7 +26,12 @@ function Nav() {
       </div>
       <NavWrapper>
         <form className="search">
-          <input type="text" placeholder="search" />
+          <input
+            type="text"
+            value={titleFilter}
+            onChange={handleSetTitleFilter}
+            placeholder="search"
+          />
         </form>
         <NavLinks className={`${toggleNavOpen ? "open" : null}`}>
           <li>Link 1</li>

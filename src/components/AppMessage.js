@@ -4,7 +4,7 @@ import { MsgContainer } from "../Styles/AppMessageStyles";
 
 function AppMessage() {
   const postContext = useContext(PostContext);
-  const { dispatch, toggleCreatePostFormModal } = postContext;
+  const { dispatch, toggleCreatePostFormModal, msg } = postContext;
 
   const handleToggleModal = () => {
     dispatch(toggleCreatePostFormModal());
@@ -13,7 +13,7 @@ function AppMessage() {
   return (
     <MsgContainer>
       <h1>My Blog</h1>
-      <div className="app-msg">App Messages</div>
+      {msg ? <div className="app-msg">{msg}</div> : null}
       <button onClick={handleToggleModal}>Add Post</button>
     </MsgContainer>
   );

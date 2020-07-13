@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useCallback } from "react";
+import React, { useEffect, useContext } from "react";
 import PostContext from "../context/postContext";
 import Post from "./Post";
 import AppMessage from "./AppMessage";
@@ -8,15 +8,16 @@ import { MainSection } from "../Styles/BlogPostsStyles";
 
 function BlogPosts() {
   const postContext = useContext(PostContext);
-  const { dispatch, getPosts, posts, isCreatingPost } = postContext;
-
-  const handleGetPosts = useCallback(() => {
-    dispatch(getPosts());
-  }, [dispatch, getPosts]);
+  const { getPosts, posts, isCreatingPost, titleFilter } = postContext;
 
   useEffect(() => {
-    handleGetPosts();
-  }, [handleGetPosts]);
+    getPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const filteredPosts = posts.filter((post) =>
+    post.title.toLowerCase().includes(titleFilter.toLowerCase())
+  );
 
   return (
     <>
@@ -32,9 +33,11 @@ function BlogPosts() {
           </ul>
         </aside>
         <div className="post-wrapper">
-          {posts.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
+          {posts.length !== 0 ? (
+            filteredPosts.map((post) => <Post key={post.id} post={post} />)
+          ) : (
+            <h1>Add New Post</h1>
+          )}
         </div>
       </MainSection>
     </>

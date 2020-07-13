@@ -4,11 +4,28 @@ import { PostContainer } from "../Styles/PostStyles";
 
 function Post({ post }) {
   const postContext = useContext(PostContext);
-  const { dispatch, deletePost } = postContext;
+  const {
+    dispatch,
+    deletePost,
+    setPostToEdit,
+    clearAppMessage,
+    toggleCreatePostFormModal,
+    isLoading,
+  } = postContext;
   const { title, text } = post;
 
   const handleDeletePost = () => {
-    dispatch(deletePost(post));
+    deletePost(post);
+    if (!isLoading) {
+      setTimeout(() => {
+        dispatch(clearAppMessage());
+      }, 4000);
+    }
+  };
+
+  const handlePostToEdit = () => {
+    dispatch(setPostToEdit(post));
+    dispatch(toggleCreatePostFormModal());
   };
 
   return (
@@ -22,7 +39,7 @@ function Post({ post }) {
           </div>
         </div>
         <div className="buttons">
-          <button>Edit</button>
+          <button onClick={handlePostToEdit}>Edit</button>
           <button onClick={handleDeletePost}>Delete</button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import PostContext from "../context/postContext";
 import { GrClose } from "react-icons/gr";
 import {
@@ -14,12 +14,23 @@ const initialFormState = {
 
 function PostForm() {
   const postContext = useContext(PostContext);
-  const { dispatch, toggleCreatePostFormModal, addPost } = postContext;
+  const {
+    dispatch,
+    getPosts,
+    addPost,
+    editPost,
+    postToEdit,
+    toggleCreatePostFormModal,
+    clearPostToEdit,
+    clearAppMessage,
+    isLoading,
+  } = postContext;
 
   const [newPost, setNewPost] = useState(initialFormState);
 
   const handleToggleModal = () => {
     dispatch(toggleCreatePostFormModal());
+    dispatch(clearPostToEdit());
   };
 
   const handleChange = (e) => {
@@ -31,10 +42,28 @@ function PostForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addPost(newPost));
+    if (postToEdit === null) {
+      addPost(newPost);
+    } else {
+      editPost(newPost);
+    }
     setNewPost(initialFormState);
     handleToggleModal();
+    getPosts();
+    if (!isLoading) {
+      setTimeout(() => {
+        dispatch(clearAppMessage());
+      }, 4000);
+    }
   };
+
+  useEffect(() => {
+    if (postToEdit !== null) {
+      setNewPost(postToEdit);
+    } else {
+      setNewPost(initialFormState);
+    }
+  }, [postToEdit]);
 
   return (
     <ModalContainer>

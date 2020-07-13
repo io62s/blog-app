@@ -20,7 +20,7 @@ const FormContainer = styled.div`
 
   .form-header {
     width: 100%;
-    padding: 0.5px 1rem;
+    padding: 0.7rem;
     background-color: ${grey};
     ${flex("row", "space-between", "center")};
 
@@ -68,6 +68,7 @@ const FormWrapper = styled.div`
         &[type="submit"] {
           background-color: ${main};
           color: ${white};
+          border: 1px solid ${main};
           border: none;
         }
       }
