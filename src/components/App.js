@@ -3,24 +3,27 @@ import { Route, Switch } from "react-router-dom";
 import Nav from "./Nav";
 import BlogPosts from "./BlogPosts";
 import Profile from "./Profile";
+import PostState from "../context/PostState";
 
 import { Container } from "../Styles/AppStyles";
 import GlobalStyle from "../Styles/GlobalStyle";
 
 function App() {
   return (
-    <Container>
-      <GlobalStyle />
-      <Nav />
-      <Switch>
-        <Route exact path="/">
-          <BlogPosts />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-      </Switch>
-    </Container>
+    <PostState>
+      <Container>
+        <GlobalStyle />
+        <Nav />
+        <Switch>
+          <Route exact path="/">
+            <BlogPosts />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+        </Switch>
+      </Container>
+    </PostState>
   );
 }
 

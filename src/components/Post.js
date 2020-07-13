@@ -1,14 +1,16 @@
 import React from "react";
 import { PostContainer } from "../Styles/PostStyles";
 
-function Post() {
+function Post({ post }) {
+  const { title, text } = post;
+
   return (
     <PostContainer>
       <div className="post-header">
         <div className="title-wrapper">
           <img src="https://picsum.photos/80" alt="avatar" />
           <div>
-            <h3>Post Title</h3>
+            <h3>{title}</h3>
             <p>Created at</p>
           </div>
         </div>
@@ -18,7 +20,7 @@ function Post() {
         </div>
       </div>
       <div className="post-body">
-        <p>Post Text</p>
+        <p>{text}</p>
       </div>
       <div className="images">
         <img src="https://picsum.photos/100" alt="blog" />
